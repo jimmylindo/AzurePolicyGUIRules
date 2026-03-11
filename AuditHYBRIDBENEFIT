@@ -1,0 +1,25 @@
+{
+  "displayName": "Deny hybrid use benefit",
+  "description": "This policy will deny usage of hybrid use benefit.",
+  "parameters": {},
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "in": [
+            "Microsoft.Compute/virtualMachines",
+            "Microsoft.Compute/VirtualMachineScaleSets"
+          ]
+        },
+        {
+          "field": "Microsoft.Compute/licenseType",
+          "equals": "Windows_Server"
+        }
+      ]
+    },
+    "then": {
+      "effect": "audit"
+    }
+  }
+}
